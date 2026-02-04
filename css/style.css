@@ -293,6 +293,23 @@ footer {
     margin-bottom: 20px;
 }
 
+.footer-links {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
