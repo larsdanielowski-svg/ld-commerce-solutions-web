@@ -1,48 +1,144 @@
 // Main JavaScript für LD Commerce Solutions Website
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Dark Mode Toggle
+    // Enhanced Dark Mode System
     const themeToggle = document.querySelector('.theme-toggle');
     const themeIcon = themeToggle?.querySelector('i');
     const themeText = themeToggle?.querySelector('.theme-text');
     
-    // Check for saved theme preference or respect OS preference
+    // System preferences detection with fallback
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    const currentTheme = savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches) ? 'dark' : 'light';
+    const prefersLightScheme = window.matchMedia('(prefers-color-scheme: light)');
     
-    // Apply theme
-    if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        if (themeIcon) themeIcon.className = 'fas fa-sun';
-        if (themeText) themeText.textContent = 'Light';
+    // Get saved theme with timestamp for auto-reset option
+    const savedTheme = localStorage.getItem('theme');
+    const savedTimestamp = localStorage.getItem('themeTimestamp');
+    const now = new Date().getTime();
+    const oneWeek = 7 * 24 * 60 * 60 * 1000;
+    
+    // Check if saved theme is too old (optional auto-reset)
+    let useSavedTheme = true;
+    if (savedTimestamp && (now - parseInt(savedTimestamp)) > oneWeek) {
+        // Auto-reset to system preference after 1 week
+        useSavedTheme = false;
     }
     
-    // Theme toggle functionality
+    // Determine initial theme
+    let currentTheme;
+    if (useSavedTheme && savedTheme) {
+        currentTheme = savedTheme;
+    } else {
+        // Respect OS preference
+        if (prefersDarkScheme.matches) {
+            currentTheme = 'dark';
+        } else if (prefersLightScheme.matches) {
+            currentTheme = 'light';
+        } else {
+            // No preference detected, default to light
+            currentTheme = 'light';
+        }
+        // Save system preference as initial
+        localStorage.setItem('theme', currentTheme);
+        localStorage.setItem('themeTimestamp', now.toString());
+    }
+    
+    // Apply theme with smooth transition
+    function applyTheme(theme, animate = true) {
+        if (animate) {
+            document.documentElement.style.transition = 'none';
+            document.documentElement.setAttribute('data-theme', theme);
+            // Force reflow
+            document.documentElement.offsetHeight;
+            document.documentElement.style.transition = '';
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        
+        // Update toggle button
+        if (themeIcon) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        if (themeText) {
+            themeText.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('theme', theme);
+        localStorage.setItem('themeTimestamp', new Date().getTime().toString());
+        
+        // Dispatch custom event for other components
+        document.dispatchEvent(new CustomEvent('themechange', { 
+            detail: { theme: theme } 
+        }));
+    }
+    
+    // Initial theme application
+    applyTheme(currentTheme, false);
+    
+    // Theme toggle functionality with enhanced animations
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            // Update theme
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            // Enhanced button animation
+            themeToggle.style.transform = 'scale(0.95) rotate(5deg)';
+            themeToggle.style.boxShadow = '0 0 20px rgba(0, 180, 216, 0.5)';
             
-            // Update toggle button
-            if (themeIcon) {
-                themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-            if (themeText) {
-                themeText.textContent = newTheme === 'dark' ? 'Light' : 'Dark';
-            }
-            
-            // Add subtle animation
-            themeToggle.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 themeToggle.style.transform = '';
-            }, 150);
+                themeToggle.style.boxShadow = '';
+            }, 300);
+            
+            // Apply new theme
+            applyTheme(newTheme);
+            
+            // Show subtle notification for accessibility
+            if (window.innerWidth > 768) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 90px;
+                    right: 20px;
+                    background: ${newTheme === 'dark' ? '#1a1a1a' : '#ffffff'};
+                    color: ${newTheme === 'dark' ? '#f0f0f0' : '#1a1a1a'};
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 10000;
+                    transform: translateY(-10px);
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                `;
+                notification.textContent = newTheme === 'dark' ? '🌙 Dark Mode aktiviert' : '☀️ Light Mode aktiviert';
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.transform = 'translateY(0)';
+                    notification.style.opacity = '1';
+                }, 10);
+                
+                // Remove after delay
+                setTimeout(() => {
+                    notification.style.transform = 'translateY(-10px)';
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 2000);
+            }
         });
     }
+    
+    // Listen for system preference changes
+    prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            // Only auto-switch if user hasn't manually set a preference
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
     
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
