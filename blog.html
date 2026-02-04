@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LD Commerce Solutions | Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">LD <span>Commerce Solutions</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="about.html">Über uns</a></li>
+                <li><a href="#contact" class="btn-nav">Kontakt</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Blog Hero -->
+        <section class="blog-hero">
+            <div class="container">
+                <h1>Unser Blog</h1>
+                <p>Einblicke, Trends und Best Practices aus der Welt des digitalen Handels.</p>
+                <div class="blog-search">
+                    <input type="text" placeholder="Suchen Sie nach Themen..." id="search-input">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Categories -->
+        <section class="blog-categories">
+            <div class="container">
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="all">Alle Artikel</button>
+                    <button class="category-btn" data-category="ai">AI Automation</button>
+                    <button class="category-btn" data-category="web">Web Development</button>
+                    <button class="category-btn" data-category="strategy">Business Strategy</button>
+                    <button class="category-btn" data-category="trends">Trends</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Grid -->
+        <section class="blog-grid-section">
+            <div class="container">
+                <div class="blog-grid">
+                    <!-- AI Automation Article -->
+                    <article class="blog-card" data-category="ai">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-ai">AI</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag ai-tag">AI Automation</span>
+                                <span class="date"><i class="far fa-calendar"></i> 04.02.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 5 Min</span>
+                            </div>
+                            <h3>KI im E-Commerce: Wie künstliche Intelligenz den Online-Handel revolutioniert</h3>
+                            <p class="blog-excerpt">Entdecken Sie, wie KI-gestützte Lösungen personalisierte Shopping-Erlebnisse schaffen, Bestand optimieren und Kundenservice automatisieren.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Web Development Article -->
+                    <article class="blog-card" data-category="web">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-web">Web</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag web-tag">Web Development</span>
+                                <span class="date"><i class="far fa-calendar"></i> 02.02.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 8 Min</span>
+                            </div>
+                            <h3>Performance-Optimierung für moderne Webshops</h3>
+                            <p class="blog-excerpt">Praktische Tipps zur Verbesserung der Ladezeiten, Conversion-Raten und Benutzererfahrung in E-Commerce-Projekten.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Business Strategy Article -->
+                    <article class="blog-card" data-category="strategy">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-strategy">Strategy</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag strategy-tag">Business Strategy</span>
+                                <span class="date"><i class="far fa-calendar"></i> 31.01.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 7 Min</span>
+                            </div>
+                            <h3>Omnichannel-Strategien für den digitalen Handel</h3>
+                            <p class="blog-excerpt">Wie Sie nahtlose Kundenerlebnisse über alle Kanäle hinweg schaffen und so Umsatz und Kundenbindung steigern.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Trends Article -->
+                    <article class="blog-card" data-category="trends">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-trends">Trends</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag trends-tag">Trends</span>
+                                <span class="date"><i class="far fa-calendar"></i> 28.01.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 6 Min</span>
+                            </div>
+                            <h3>Top 5 E-Commerce Trends 2026</h3>
+                            <p class="blog-excerpt">Von AR-Shopping bis hin zu nachhaltigen Lieferketten – die wichtigsten Trends, die den Online-Handel prägen werden.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- AI Automation Article 2 -->
+                    <article class="blog-card" data-category="ai">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-ai">AI</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag ai-tag">AI Automation</span>
+                                <span class="date"><i class="far fa-calendar"></i> 25.01.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 9 Min</span>
+                            </div>
+                            <h3>Chatbots vs. Conversational AI: Was ist der Unterschied?</h3>
+                            <p class="blog-excerpt">Ein Vergleich traditioneller Chatbots mit moderner Conversational AI und wie Sie die richtige Lösung für Ihr Unternehmen wählen.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Web Development Article 2 -->
+                    <article class="blog-card" data-category="web">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-web">Web</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag web-tag">Web Development</span>
+                                <span class="date"><i class="far fa-calendar"></i> 22.01.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 10 Min</span>
+                            </div>
+                            <h3>Headless Commerce: Die Zukunft des E-Commerce?</h3>
+                            <p class="blog-excerpt">Eine Einführung in Headless-Commerce-Architekturen und ihre Vorteile für Flexibilität und Skalierbarkeit.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Business Strategy Article 2 -->
+                    <article class="blog-card" data-category="strategy">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-strategy">Strategy</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag strategy-tag">Business Strategy</span>
+                                <span class="date"><i class="far fa-calendar"></i> 19.01.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 6 Min</span>
+                            </div>
+                            <h3>Data-Driven Decision Making im Online-Handel</h3>
+                            <p class="blog-excerpt">Wie Sie Datenanalyse nutzen, um fundierte Geschäftsentscheidungen zu treffen und Ihre Wettbewerbsfähigkeit zu steigern.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <!-- Trends Article 2 -->
+                    <article class="blog-card" data-category="trends">
+                        <div class="blog-image">
+                            <div class="article-placeholder article-trends">Trends</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="category-tag trends-tag">Trends</span>
+                                <span class="date"><i class="far fa-calendar"></i> 16.01.2026</span>
+                                <span class="read-time"><i class="far fa-clock"></i> 7 Min</span>
+                            </div>
+                            <h3>Sustainability im E-Commerce: Von Nische zu Mainstream</h3>
+                            <p class="blog-excerpt">Wie Nachhaltigkeit zum Wettbewerbsvorteil wird und welche Strategien erfolgreiche Marken verfolgen.</p>
+                            <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="page-btn"><i class="fas fa-chevron-left"></i> Vorherige</a>
+                    <div class="page-numbers">
+                        <span class="page-number active">1</span>
+                        <span class="page-number">2</span>
+                        <span class="page-number">3</span>
+                        <span class="page-dots">...</span>
+                        <span class="page-number">8</span>
+                    </div>
+                    <a href="#" class="page-btn">Nächste <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Bleiben Sie informiert</h2>
+                <p>Abonnieren Sie unseren Newsletter für regelmäßige Updates, Fachartikel und exklusive Insights.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Ihre E-Mail-Adresse" required>
+                    <button type="submit" class="btn btn-primary">Abonnieren</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Kontaktieren Sie uns</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Lassen Sie uns sprechen</h3>
+                        <p>Haben Sie ein Projekt im Kopf? Gerne beraten wir Sie unverbindlich.</p>
+                        <ul class="contact-details">
+                            <li><i class="fas fa-envelope"></i> info@ld-commerce.com</li>
+                            <li><i class="fas fa-phone"></i> +49 (0) 123 456 789</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Berlin, Deutschland</li>
+                        </ul>
+                    </div>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ihr Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ihre E-Mail" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ihre Nachricht" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Nachricht senden</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">LD Commerce Solutions</div>
+                <p>&copy; 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+                <div class="footer-links">
+                    <a href="datenschutz.html">Datenschutz</a> |
+                    <a href="impressum.html">Impressum</a> |
+                    <a href="agb.html">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>
