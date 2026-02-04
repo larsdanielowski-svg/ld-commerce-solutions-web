@@ -348,5 +348,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize on page load
 window.addEventListener('load', () => {
-    // Any additional initialization code
+    // Lazy load hero background
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        // Create a new image to preload the background
+        const img = new Image();
+        img.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=60&w=1920&ixlib=rb-4.0.3';
+        img.onload = () => {
+            hero.classList.add('loaded');
+        };
+        img.onerror = () => {
+            // Fallback if image fails to load
+            console.warn('Hero background failed to load, using fallback');
+            hero.classList.add('loaded');
+        };
+        
+        // Set a timeout as fallback
+        setTimeout(() => {
+            hero.classList.add('loaded');
+        }, 3000);
+    }
+    
+    // Initialize performance optimizations
+    initializePerformanceOptimizations();
 });
+
+// Performance optimizations
+function initializePerformanceOptimizations() {
+    // Add loading="lazy" to any future images
+    document.querySelectorAll('img').forEach(img => {
+        if (!img.loading) {
+            img.loading = 'lazy';
+        }
+    });
+    
+    // Defer non-critical CSS
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            // Load non-critical resources here
+        });
+    }
+    
+    // Preconnect to external domains
+    const preconnectDomains = [
+        'https://fonts.googleapis.com',
+        'https://fonts.gstatic.com',
+        'https://cdnjs.cloudflare.com',
+        'https://images.unsplash.com'
+    ];
+    
+    preconnectDomains.forEach(domain => {
+        const link = document.createElement('link');
+        link.rel = 'preconnect';
+        link.href = domain;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+    });
+    
+    // Preload critical resources
+    const preloadResources = [
+        { href: '/css/style.css', as: 'style' },
+        { href: '/js/main.js', as: 'script' }
+    ];
+    
+    preloadResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = resource.href;
+        link.as = resource.as;
+        document.head.appendChild(link);
+    });
+}

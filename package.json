@@ -1,0 +1,29 @@
+{
+  "name": "ld-commerce-solutions-web",
+  "version": "1.0.0",
+  "description": "Moderne Handelslösungen Website",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "cleancss -O2 --source-map -o dist/css/style.min.css css/style.css",
+    "build:js": "terser js/*.js -c -m -o dist/js/bundle.min.js --source-map",
+    "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --use-short-doctype --minify-css true --minify-js true -o dist/index.html index.html",
+    "build": "npm run build:css && npm run build:js",
+    "prebuild": "mkdir -p dist/css dist/js",
+    "postbuild": "echo 'Build completed successfully!'",
+    "optimize:images": "echo 'Image optimization would run here'",
+    "audit:performance": "echo 'Performance audit would run here'"
+  },
+  "keywords": [
+    "ecommerce",
+    "business",
+    "consulting",
+    "web-development"
+  ],
+  "author": "LD Commerce Solutions",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.31.0",
+    "html-minifier-terser": "^7.2.0"
+  }
+}
