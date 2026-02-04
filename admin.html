@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LD Admin</h2>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Administrator</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Benutzer</a></li>
+                    <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Bestellungen</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Einstellungen</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Hilfe</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="theme-toggle-container">
+                    <button class="theme-toggle" aria-label="Dark/Light Mode umschalten">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                </div>
+                <a href="../index.html" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Zur Website</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>Admin Dashboard</h1>
+                    <p>Willkommen zurück, Administrator</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Suchen...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </div>
+                    <div class="profile">
+                        <img src="https://ui-avatars.com/api/?name=Admin+Lars&background=00468b&color=fff" alt="Admin">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>1,248</h3>
+                        <p>Benutzer</p>
+                        <span class="stat-change positive">+12% diese Woche</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>€42,580</h3>
+                        <p>Umsatz</p>
+                        <span class="stat-change positive">+24% diesen Monat</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card warning">
+                    <div class="stat-icon warning">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>89.5%</h3>
+                        <p>Konversionsrate</p>
+                        <span class="stat-change negative">-2.1% diese Woche</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon info">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>45.2K</h3>
+                        <p>Besucher</p>
+                        <span class="stat-change positive">+18% diesen Monat</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2>Benutzerverwaltung</h2>
+                    <button class="btn btn-primary" id="addUserBtn">
+                        <i class="fas fa-plus"></i> Neuer Benutzer
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>E-Mail</th>
+                                <th>Rolle</th>
+                                <th>Status</th>
+                                <th>Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#001</td>
+                                <td>Max Mustermann</td>
+                                <td>max@example.com</td>
+                                <td><span class="role-tag admin">Admin</span></td>
+                                <td><span class="status active">Aktiv</span></td>
+                                <td>
+                                    <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#002</td>
+                                <td>Anna Schmidt</td>
+                                <td>anna@example.com</td>
+                                <td><span class="role-tag editor">Editor</span></td>
+                                <td><span class="status active">Aktiv</span></td>
+                                <td>
+                                    <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#003</td>
+                                <td>Peter Müller</td>
+                                <td>peter@example.com</td>
+                                <td><span class="role-tag user">Benutzer</span></td>
+                                <td><span class="status inactive">Inaktiv</span></td>
+                                <td>
+                                    <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#004</td>
+                                <td>Lisa Fischer</td>
+                                <td>lisa@example.com</td>
+                                <td><span class="role-tag editor">Editor</span></td>
+                                <td><span class="status pending">Ausstehend</span></td>
+                                <td>
+                                    <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#005</td>
+                                <td>Thomas Weber</td>
+                                <td>thomas@example.com</td>
+                                <td><span class="role-tag user">Benutzer</span></td>
+                                <td><span class="status active">Aktiv</span></td>
+                                <td>
+                                    <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2>Letzte Aktivitäten</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Max Mustermann</strong> hat sich registriert</p>
+                            <span class="activity-time">vor 5 Minuten</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Anna Schmidt</strong> hat eine Bestellung aufgegeben</p>
+                            <span class="activity-time">vor 15 Minuten</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Peter Müller</strong> hat ein neues Blog-Erstell</p>
+                            <span class="activity-time">vor 30 Minuten</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Lisa Fischer</strong> hat Einstellungen aktualisiert</p>
+                            <span class="activity-time">vor 1 Stunde</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add User -->
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Neuen Benutzer hinzufügen</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label for="userName">Vollständiger Name</label>
+                        <input type="text" id="userName" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">E-Mail Adresse</label>
+                        <input type="email" id="userEmail" placeholder="max@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Rolle</label>
+                        <select id="userRole" required>
+                            <option value="">Rolle auswählen</option>
+                            <option value="admin">Administrator</option>
+                            <option value="editor">Editor</option>
+                            <option value="user">Benutzer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPassword">Passwort</label>
+                        <input type="password" id="userPassword" placeholder="Mindestens 8 Zeichen" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal">Abbrechen</button>
+                <button class="btn btn-primary" id="saveUserBtn">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeText = document.querySelector('.theme-toggle span');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeText.textContent = 'Dark Mode';
+                themeToggle.querySelector('i').className = 'fas fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeText.textContent = 'Light Mode';
+                themeToggle.querySelector('i').className = 'fas fa-sun';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -418,4 +418,207 @@ function initializePerformanceOptimizations() {
         link.as = resource.as;
         document.head.appendChild(link);
     });
+    
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Change icon
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                icon.className = 'fas fa-bars';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+    
+    // Mobile Form Validation Enhancement
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            // Check if on mobile
+            const isMobile = window.innerWidth <= 767;
+            
+            if (isMobile) {
+                // Mobile-specific validation
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                let hasError = false;
+                
+                inputs.forEach(input => {
+                    if (input.hasAttribute('required') && !input.value.trim()) {
+                        hasError = true;
+                        input.style.borderColor = '#dc3545';
+                        
+                        // Show mobile-friendly error
+                        const errorMsg = document.createElement('div');
+                        errorMsg.className = 'mobile-error';
+                        errorMsg.textContent = 'Bitte füllen Sie dieses Feld aus';
+                        errorMsg.style.color = '#dc3545';
+                        errorMsg.style.fontSize = '0.85rem';
+                        errorMsg.style.marginTop = '5px';
+                        
+                        // Remove existing error if any
+                        const existingError = input.nextElementSibling;
+                        if (existingError && existingError.className === 'mobile-error') {
+                            existingError.remove();
+                        }
+                        
+                        input.parentNode.insertBefore(errorMsg, input.nextSibling);
+                    } else {
+                        input.style.borderColor = '';
+                    }
+                });
+                
+                if (hasError) {
+                    e.preventDefault();
+                    // Scroll to first error
+                    const firstError = contactForm.querySelector('input[style*="border-color"], textarea[style*="border-color"]');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstError.focus();
+                    }
+                }
+            }
+        });
+        
+        // Clear error on input
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                input.style.borderColor = '';
+                const errorMsg = input.nextElementSibling;
+                if (errorMsg && errorMsg.className === 'mobile-error') {
+                    errorMsg.remove();
+                }
+            });
+        });
+    }
+    
+    // Mobile Performance Optimizations
+    if (window.innerWidth <= 767) {
+        // Lazy load images below the fold
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+        
+        // Reduce animation intensity on mobile
+        document.querySelectorAll('[class*="animate"], [class*="transition"]').forEach(el => {
+            el.style.animationDuration = '0.3s';
+            el.style.transitionDuration = '0.3s';
+        });
+        
+        // Touch-friendly carousel/slider for testimonials (if exists)
+        const testimonialGrid = document.querySelector('.testimonials-grid');
+        if (testimonialGrid) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            testimonialGrid.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            testimonialGrid.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > swipeThreshold) {
+                    const testimonials = Array.from(testimonialGrid.children);
+                    const activeIndex = testimonials.findIndex(t => t.style.display !== 'none');
+                    
+                    if (swipeDistance > 0 && activeIndex > 0) {
+                        // Swipe right - show previous
+                        testimonials.forEach(t => t.style.display = 'none');
+                        testimonials[activeIndex - 1].style.display = 'block';
+                    } else if (swipeDistance < 0 && activeIndex < testimonials.length - 1) {
+                        // Swipe left - show next
+                        testimonials.forEach(t => t.style.display = 'none');
+                        testimonials[activeIndex + 1].style.display = 'block';
+                    }
+                }
+            }
+        }
+    }
+    
+    // Handle orientation changes
+    window.addEventListener('orientationchange', () => {
+        // Refresh mobile menu on orientation change
+        if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            }
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Recalculate viewport-dependent layouts
+        setTimeout(() => {
+            // Trigger any layout recalculations here
+            window.dispatchEvent(new Event('resize'));
+        }, 100);
+    });
+    
+    // Keyboard navigation for mobile menu
+    if (menuToggle) {
+        menuToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                menuToggle.click();
+            }
+        });
+    }
+    
+    // Close mobile menu with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+            document.body.style.overflow = 'auto';
+        }
+    });
 }
