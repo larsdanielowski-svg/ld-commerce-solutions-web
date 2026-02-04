@@ -233,140 +233,27 @@
             <div class="container">
                 <h2 class="section-title">Kontaktieren Sie uns</h2>
                 <div class="contact-wrapper">
-                    <!-- Contact Info Card -->
-                    <div class="contact-info-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-comments"></i> Lassen Sie uns sprechen</h3>
-                            <div class="card-gradient-border"></div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-intro">Haben Sie ein Projekt im Kopf? Gerne beraten wir Sie unverbindlich zu Ihrem nächsten Digitalisierungsvorhaben.</p>
-                            
-                            <div class="contact-details-modern">
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="contact-content">
-                                        <h4>E-Mail</h4>
-                                        <p>info@ld-commerce.com</p>
-                                        <span class="contact-sub">Antwort innerhalb 24h</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-phone"></i>
-                                    </div>
-                                    <div class="contact-content">
-                                        <h4>Telefon</h4>
-                                        <p>+49 (0) 123 456 789</p>
-                                        <span class="contact-sub">Mo-Fr 9:00-18:00 Uhr</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <div class="contact-content">
-                                        <h4>Standort</h4>
-                                        <p>Berlin, Deutschland</p>
-                                        <span class="contact-sub">Remote-Beratung weltweit</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-cta">
-                                <p><i class="fas fa-lightbulb"></i> <strong>Tipp:</strong> Nutzen Sie unser Kontaktformular für eine schnellere Rückmeldung.</p>
-                            </div>
-                        </div>
+                    <div class="contact-info">
+                        <h3>Lassen Sie uns sprechen</h3>
+                        <p>Haben Sie ein Projekt im Kopf? Gerne beraten wir Sie unverbindlich.</p>
+                        <ul class="contact-details">
+                            <li><i class="fas fa-envelope"></i> info@ld-commerce.com</li>
+                            <li><i class="fas fa-phone"></i> +49 (0) 123 456 789</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Berlin, Deutschland</li>
+                        </ul>
                     </div>
-
-                    <!-- Modern Contact Form Card -->
-                    <div class="contact-form-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-paper-plane"></i> Kontaktformular</h3>
-                            <div class="card-gradient-border"></div>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ihr Name" required>
                         </div>
-                        
-                        <form id="contact-form" class="modern-contact-form" novalidate>
-                            <!-- Success Message (hidden by default) -->
-                            <div class="form-success" id="form-success">
-                                <div class="success-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <h4>Nachricht gesendet!</h4>
-                                <p>Vielen Dank für Ihre Anfrage. Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
-                                <button type="button" class="btn-success-reset" id="reset-form">
-                                    Neue Nachricht senden
-                                </button>
-                            </div>
-
-                            <!-- Form Fields (visible by default) -->
-                            <div class="form-fields" id="form-fields">
-                                <!-- Name Field -->
-                                <div class="form-group-modern">
-                                    <div class="input-wrapper">
-                                        <input type="text" id="name" name="name" required>
-                                        <label for="name" class="floating-label">
-                                            <i class="fas fa-user"></i> Ihr Name
-                                        </label>
-                                        <div class="input-border"></div>
-                                        <div class="input-focus-line"></div>
-                                    </div>
-                                    <div class="error-message" id="name-error"></div>
-                                </div>
-
-                                <!-- Email Field -->
-                                <div class="form-group-modern">
-                                    <div class="input-wrapper">
-                                        <input type="email" id="email" name="email" required>
-                                        <label for="email" class="floating-label">
-                                            <i class="fas fa-envelope"></i> Ihre E-Mail
-                                        </label>
-                                        <div class="input-border"></div>
-                                        <div class="input-focus-line"></div>
-                                    </div>
-                                    <div class="error-message" id="email-error"></div>
-                                </div>
-
-                                <!-- Message Field -->
-                                <div class="form-group-modern">
-                                    <div class="input-wrapper">
-                                        <textarea id="message" name="message" rows="4" required></textarea>
-                                        <label for="message" class="floating-label">
-                                            <i class="fas fa-comment"></i> Ihre Nachricht
-                                        </label>
-                                        <div class="input-border"></div>
-                                        <div class="input-focus-line"></div>
-                                    </div>
-                                    <div class="error-message" id="message-error"></div>
-                                    <div class="char-counter">
-                                        <span id="char-count">0</span>/500 Zeichen
-                                    </div>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="form-submit">
-                                    <button type="submit" class="btn-submit-modern" id="submit-btn">
-                                        <span class="btn-text">Nachricht senden</span>
-                                        <span class="btn-loader">
-                                            <i class="fas fa-circle-notch fa-spin"></i> Sende...
-                                        </span>
-                                        <span class="btn-icon">
-                                            <i class="fas fa-paper-plane"></i>
-                                        </span>
-                                        <div class="btn-gradient-border"></div>
-                                    </button>
-                                    
-                                    <div class="form-note">
-                                        <i class="fas fa-shield-alt"></i> Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ihre E-Mail" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ihre Nachricht" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Nachricht senden</button>
+                    </form>
                 </div>
             </div>
         </section>
