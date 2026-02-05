@@ -1,5 +1,30 @@
 // Admin Panel JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebarNav = document.querySelector('.sidebar-nav');
+    
+    if (menuToggle && sidebarNav) {
+        menuToggle.addEventListener('click', function() {
+            sidebarNav.classList.toggle('expanded');
+            sidebarNav.classList.toggle('collapsed');
+            this.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (sidebarNav && menuToggle && 
+                !sidebarNav.contains(e.target) && 
+                !menuToggle.contains(e.target) &&
+                sidebarNav.classList.contains('expanded')) {
+                sidebarNav.classList.remove('expanded');
+                sidebarNav.classList.add('collapsed');
+                menuToggle.classList.remove('active');
+            }
+        }
+    });
     // Modal functionality
     const addUserBtn = document.getElementById('addUserBtn');
     const addUserModal = document.getElementById('addUserModal');

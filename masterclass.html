@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Force Masterclass | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-top">
+                    <h2>LD Masterclass</h2>
+                    <button class="menu-toggle" aria-label="Menü umschalten">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Masterclass Manager</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="masterclass.html" class="active"><i class="fas fa-graduation-cap"></i> Masterclass</a></li>
+                    <li><a href="#students"><i class="fas fa-users"></i> Studenten</a></li>
+                    <li><a href="#courses"><i class="fas fa-book"></i> Kurse</a></li>
+                    <li><a href="#progress"><i class="fas fa-chart-bar"></i> Fortschritt</a></li>
+                    <li><a href="#payments"><i class="fas fa-credit-card"></i> Zahlungen</a></li>
+                    <li><a href="#certificates"><i class="fas fa-certificate"></i> Zertifikate</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="theme-toggle-container">
+                    <button class="theme-toggle" aria-label="Dark/Light Mode umschalten">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                </div>
+                <a href="index.html" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Zur Website</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1><i class="fas fa-graduation-cap"></i> Future Force Masterclass</h1>
+                    <p>Management System für Ihr Premium-Bildungsprodukt</p>
+                </div>
+                <div class="header-right">
+                    <div class="quick-stats">
+                        <span class="stat-badge primary">
+                            <i class="fas fa-users"></i> 189 Aktive Studenten
+                        </span>
+                        <span class="stat-badge success">
+                            <i class="fas fa-euro-sign"></i> €47.250 Umsatz
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Masterclass Overview -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-info-circle"></i> Masterclass Übersicht</h2>
+                    <button class="btn btn-primary" id="editMasterclassBtn">
+                        <i class="fas fa-edit"></i> Bearbeiten
+                    </button>
+                </div>
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>12 Module</h3>
+                            <p>Videokurse & interaktive Lektionen</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>24 Stunden</h3>
+                            <p>Gesamte Kursdauer</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Zertifikat</h3>
+                            <p>Offizielles Abschlusszertifikat</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>4.9/5.0</h3>
+                            <p>Durchschnittliche Bewertung</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Modules -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-layer-group"></i> Kursmodule</h2>
+                    <button class="btn btn-secondary" id="addModuleBtn">
+                        <i class="fas fa-plus"></i> Modul hinzufügen
+                    </button>
+                </div>
+                <div class="modules-list">
+                    <div class="module-card">
+                        <div class="module-header">
+                            <h3>Modul 1: Grundlagen des E-Commerce</h3>
+                            <span class="module-status active">Aktiv</span>
+                        </div>
+                        <div class="module-content">
+                            <p>Einführung in die Welt des digitalen Handels und Grundprinzipien</p>
+                            <div class="module-stats">
+                                <span><i class="fas fa-video"></i> 4 Videos</span>
+                                <span><i class="fas fa-file-alt"></i> 2 Übungen</span>
+                                <span><i class="fas fa-clock"></i> 2 Stunden</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon preview"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon stats"><i class="fas fa-chart-bar"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-header">
+                            <h3>Modul 2: Shopify Mastery</h3>
+                            <span class="module-status active">Aktiv</span>
+                        </div>
+                        <div class="module-content">
+                            <p>Komplette Shopify-Einrichtung und Optimierung für maximale Conversions</p>
+                            <div class="module-stats">
+                                <span><i class="fas fa-video"></i> 6 Videos</span>
+                                <span><i class="fas fa-file-alt"></i> 3 Übungen</span>
+                                <span><i class="fas fa-clock"></i> 3 Stunden</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon preview"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon stats"><i class="fas fa-chart-bar"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="module-card">
+                        <div class="module-header">
+                            <h3>Modul 3: Amazon & eBay Dropshipping</h3>
+                            <span class="module-status active">Aktiv</span>
+                        </div>
+                        <div class="module-content">
+                            <p>Profitables Dropshipping auf großen Marktplätzen</p>
+                            <div class="module-stats">
+                                <span><i class="fas fa-video"></i> 5 Videos</span>
+                                <span><i class="fas fa-file-alt"></i> 4 Übungen</span>
+                                <span><i class="fas fa-clock"></i> 4 Stunden</span>
+                            </div>
+                        </div>
+                        <div class="module-actions">
+                            <button class="btn-icon edit"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon preview"><i class="fas fa-eye"></i></button>
+                            <button class="btn-icon stats"><i class="fas fa-chart-bar"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Management -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-graduate"></i> Studentenverwaltung</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="addStudentBtn">
+                            <i class="fas fa-user-plus"></i> Student hinzufügen
+                        </button>
+                        <button class="btn btn-secondary" id="exportStudentsBtn">
+                            <i class="fas fa-download"></i> Exportieren
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table student-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>E-Mail</th>
+                                <th>Startdatum</th>
+                                <th>Fortschritt</th>
+                                <th>Zahlungsstatus</th>
+                                <th>Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ST001</td>
+                                <td>Max Mustermann</td>
+                                <td>max@example.com</td>
+                                <td>2026-01-15</td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                        <span>85%</span>
+                                    </div>
+                                </td>
+                                <td><span class="payment-status paid">Bezahlt</span></td>
+                                <td>
+                                    <button class="btn-icon message"><i class="fas fa-envelope"></i></button>
+                                    <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ST002</td>
+                                <td>Anna Schmidt</td>
+                                <td>anna@example.com</td>
+                                <td>2026-01-20</td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                        <span>45%</span>
+                                    </div>
+                                </td>
+                                <td><span class="payment-status pending">Ausstehend</span></td>
+                                <td>
+                                    <button class="btn-icon message"><i class="fas fa-envelope"></i></button>
+                                    <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ST003</td>
+                                <td>Peter Müller</td>
+                                <td>peter@example.com</td>
+                                <td>2026-02-01</td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 20%"></div>
+                                        <span>20%</span>
+                                    </div>
+                                </td>
+                                <td><span class="payment-status paid">Bezahlt</span></td>
+                                <td>
+                                    <button class="btn-icon message"><i class="fas fa-envelope"></i></button>
+                                    <button class="btn-icon view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Revenue & Analytics -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> Masterclass Performance</h2>
+                    <select id="performanceFilter">
+                        <option value="30d">Letzte 30 Tage</option>
+                        <option value="90d">Letzte 90 Tage</option>
+                        <option value="1y">Letztes Jahr</option>
+                    </select>
+                </div>
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <h4><i class="fas fa-euro-sign"></i> Gesamtumsatz</h4>
+                        <h3>€47,250</h3>
+                        <p class="performance-change positive">+45% vs. Vormonat</p>
+                    </div>
+                    <div class="performance-card">
+                        <h4><i class="fas fa-users"></i> Neue Studenten</h4>
+                        <h3>62</h3>
+                        <p class="performance-change positive">+38% vs. Vormonat</p>
+                    </div>
+                    <div class="performance-card">
+                        <h4><i class="fas fa-percentage"></i> Abschlussrate</h4>
+                        <h3>72%</h3>
+                        <p class="performance-change positive">+8% vs. Vormonat</p>
+                    </div>
+                    <div class="performance-card">
+                        <h4><i class="fas fa-star"></i> Durchschn. Bewertung</h4>
+                        <h3>4.9/5.0</h3>
+                        <p class="performance-change neutral">±0 vs. Vormonat</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/admin.js"></script>
+    <script src="js/masterclass.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeText = document.querySelector('.theme-toggle span');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeText.textContent = 'Dark Mode';
+                themeToggle.querySelector('i').className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeText.textContent = 'Light Mode';
+                themeToggle.querySelector('i').className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeText.textContent = 'Light Mode';
+            themeToggle.querySelector('i').className = 'fas fa-sun';
+        }
+    </script>
+</body>
+</html>

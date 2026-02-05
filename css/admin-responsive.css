@@ -1,5 +1,12 @@
 /* Mobile Responsiveness Improvements - Admin Panel */
 
+.sidebar-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
     .admin-container {
         flex-direction: column;
