@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>LD Analytics</h2>
+                <div class="user-info">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Business Intelligence</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="analytics.html" class="active"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="#revenue"><i class="fas fa-euro-sign"></i> Revenue</a></li>
+                    <li><a href="#users"><i class="fas fa-users"></i> User Analytics</a></li>
+                    <li><a href="#conversions"><i class="fas fa-exchange-alt"></i> Conversions</a></li>
+                    <li><a href="#masterclass"><i class="fas fa-graduation-cap"></i> Masterclass</a></li>
+                    <li><a href="#dropshipping"><i class="fas fa-truck"></i> Dropshipping</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="theme-toggle-container">
+                    <button class="theme-toggle" aria-label="Dark/Light Mode umschalten">
+                        <i class="fas fa-moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
+                </div>
+                <a href="index.html" class="btn btn-secondary"><i class="fas fa-external-link-alt"></i> Zur Website</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1><i class="fas fa-chart-line"></i> Analytics Dashboard</h1>
+                    <p>Real-time business metrics & performance insights</p>
+                </div>
+                <div class="header-right">
+                    <div class="date-range">
+                        <select id="timeRange">
+                            <option value="7d">Letzte 7 Tage</option>
+                            <option value="30d">Letzte 30 Tage</option>
+                            <option value="90d">Letzte 90 Tage</option>
+                            <option value="1y">Letztes Jahr</option>
+                        </select>
+                    </div>
+                    <div class="export-buttons">
+                        <button class="btn btn-outline" id="exportPDF">
+                            <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                        <button class="btn btn-outline" id="exportCSV">
+                            <i class="fas fa-file-csv"></i> CSV
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon primary">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3 id="totalRevenue">€42,580</h3>
+                        <p>Gesamtumsatz</p>
+                        <div class="kpi-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+24% vs. Vormonat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon success">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3 id="totalOrders">1,248</h3>
+                        <p>Bestellungen</p>
+                        <div class="kpi-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+18% vs. Vormonat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card warning">
+                    <div class="kpi-icon warning">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3 id="conversionRate">3.8%</h3>
+                        <p>Konversionsrate</p>
+                        <div class="kpi-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+0.4% vs. Vormonat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon info">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3 id="newUsers">326</h3>
+                        <p>Neue Benutzer</p>
+                        <div class="kpi-trend negative">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>-12% vs. Vormonat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-grid">
+                <!-- Revenue Chart -->
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-line"></i> Umsatzentwicklung</h3>
+                        <div class="chart-controls">
+                            <button class="btn-chart active" data-chart="revenue-daily">Täglich</button>
+                            <button class="btn-chart" data-chart="revenue-weekly">Wöchentlich</button>
+                            <button class="btn-chart" data-chart="revenue-monthly">Monatlich</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- User Activity Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-users"></i> Benutzeraktivität</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="userActivityChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Conversion Funnel -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-filter"></i> Konversions-Trichter</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="conversionFunnelChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Masterclass Performance -->
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-graduation-cap"></i> Future Force Masterclass Performance</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="masterclassChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Dropshipping Metrics -->
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-truck"></i> Dropshipping Performance</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dropshippingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Tables -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-table"></i> Detaillierte Metriken</h2>
+                    <div class="table-filters">
+                        <select id="tableFilter">
+                            <option value="all">Alle Daten</option>
+                            <option value="masterclass">Masterclass</option>
+                            <option value="dropshipping">Dropshipping</option>
+                            <option value="consulting">Beratung</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Produkt</th>
+                                <th>Umsatz (€)</th>
+                                <th>Bestellungen</th>
+                                <th>Benutzer</th>
+                                <th>Konversion</th>
+                                <th>Gewinn (€)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="metricsTable">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Insights & Recommendations -->
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Top Insights</h3>
+                    </div>
+                    <div class="insight-content">
+                        <ul class="insight-list">
+                            <li>
+                                <span class="insight-badge success">✓</span>
+                                <strong>Masterclass</strong> hat 45% höhere Konversionsrate
+                            </li>
+                            <li>
+                                <span class="insight-badge warning">⚠</span>
+                                <strong>Dropshipping</strong> Margen sanken um 8% diesen Monat
+                            </li>
+                            <li>
+                                <span class="insight-badge info">ℹ</span>
+                                <strong>Mobile Nutzer</strong> +32% Wachstum in Q1 2026
+                            </li>
+                            <li>
+                                <span class="insight-badge primary">🚀</span>
+                                <strong>Social Media</strong> generiert 65% der neuen Leads
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Empfehlungen</h3>
+                    </div>
+                    <div class="insight-content">
+                        <ul class="insight-list">
+                            <li>
+                                <span class="priority high">!</span>
+                                <strong>Masterclass Preise erhöhen:</strong> Nachfrage übersteigt Angebot
+                            </li>
+                            <li>
+                                <span class="priority medium">!</span>
+                                <strong>Dropshipping Automatisierung:</strong> Reduziere manuelle Arbeit um 40%
+                            </li>
+                            <li>
+                                <span class="priority low">!</span>
+                                <strong>Mobile App entwickeln:</strong> Mobile Nutzer wachsen exponentiell
+                            </li>
+                            <li>
+                                <span class="priority medium">!</span>
+                                <strong>Social Media Ads skalieren:</strong> ROI von 380% auf Facebook
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Analytics JavaScript -->
+    <script src="js/analytics.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeText = document.querySelector('.theme-toggle span');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeText.textContent = 'Dark Mode';
+                themeToggle.querySelector('i').className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeText.textContent = 'Light Mode';
+                themeToggle.querySelector('i').className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeText.textContent = 'Light Mode';
+            themeToggle.querySelector('i').className = 'fas fa-sun';
+        }
+    </script>
+</body>
+</html>
