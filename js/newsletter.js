@@ -224,29 +224,86 @@ class NewsletterSignup {
         const submitBtn = this.form.querySelector('button');
         const btnText = submitBtn.querySelector('.btn-text');
         
-        // Validation
+        // Enhanced Validation
         let isValid = true;
         validationMessage.textContent = '';
+        emailInput.style.borderColor = '';
         
-        if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
-            validationMessage.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+        // Email validation with regex
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email) {
+            validationMessage.textContent = 'Bitte geben Sie eine E-Mail-Adresse ein.';
             emailInput.style.borderColor = '#ef4444';
+            this.shakeElement(emailInput);
+            isValid = false;
+        } else if (!emailRegex.test(email)) {
+            validationMessage.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. name@example.com).';
+            emailInput.style.borderColor = '#ef4444';
+            this.shakeElement(emailInput);
+            isValid = false;
+        } else if (email.length > 254) {
+            validationMessage.textContent = 'Die E-Mail-Adresse darf maximal 254 Zeichen lang sein.';
+            emailInput.style.borderColor = '#ef4444';
+            this.shakeElement(emailInput);
             isValid = false;
         }
         
+        // Checkbox validation
         if (!checkbox.checked) {
-            validationMessage.textContent = 'Bitte akzeptieren Sie die Datenschutzbestimmungen.';
+            validationMessage.textContent = 'Bitte akzeptieren Sie die Datenschutzbestimmungen, um fortzufahren.';
+            this.shakeElement(checkbox.parentElement);
+            isValid = false;
+        }
+        
+        // Domain validation (common disposable emails)
+        const disposableDomains = ['tempmail.com', 'throwaway.com', 'guerrillamail.com', 'mailinator.com'];
+        const domain = email.split('@')[1];
+        if (domain && disposableDomains.some(d => domain.includes(d))) {
+            validationMessage.textContent = 'Bitte verwenden Sie eine permanente E-Mail-Adresse.';
+            emailInput.style.borderColor = '#f59e0b';
             isValid = false;
         }
         
         if (!isValid) return;
         
-        // Show loading
+        // Show loading with animation
         submitBtn.disabled = true;
+        const originalText = btnText.textContent;
         btnText.textContent = 'Wird verarbeitet...';
         
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Add loading animation
+        submitBtn.style.position = 'relative';
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        `;
+        submitBtn.appendChild(loadingSpinner);
+        
+        // Add CSS animation if not exists
+        if (!document.querySelector('#loading-spinner-style')) {
+            const style = document.createElement('style');
+            style.id = 'loading-spinner-style';
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: translate(-50%, -50%) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Simulate API call with real-time feedback
+        await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Show success
         this.form.style.display = 'none';
@@ -257,7 +314,7 @@ class NewsletterSignup {
             this.hide();
         }, 3000);
         
-        // Reset form
+        // Reset form with smooth animation
         setTimeout(() => {
             this.form.style.display = 'block';
             successMessage.style.display = 'none';
@@ -265,7 +322,38 @@ class NewsletterSignup {
             checkbox.checked = false;
             submitBtn.disabled = false;
             btnText.textContent = 'Jetzt anmelden';
+            
+            // Remove loading spinner
+            const spinner = submitBtn.querySelector('div[style*="animation: spin"]');
+            if (spinner) spinner.remove();
+            
+            // Success animation for form reset
+            this.form.style.animation = 'none';
+            setTimeout(() => {
+                this.form.style.animation = 'fadeInUp 0.6s ease';
+            }, 10);
         }, 3500);
+    }
+    
+    shakeElement(element) {
+        element.style.animation = 'none';
+        setTimeout(() => {
+            element.style.animation = 'shake 0.5s ease';
+        }, 10);
+        
+        // Add shake animation if not exists
+        if (!document.querySelector('#shake-animation-style')) {
+            const style = document.createElement('style');
+            style.id = 'shake-animation-style';
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
 }
 

@@ -176,5 +176,40 @@
     <script src="js/contact-form.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/newsletter.js"></script>
+    <!-- Performance Testing (nur in Entwicklung) -->
+    <script src="js/performance-test.js"></script>
 </body>
+
+<!-- Performance Test Button (nur in Entwicklung) -->
+<style>
+    .performance-test-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+        z-index: 9999;
+        transition: all 0.3s ease;
+    }
+    .performance-test-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+    .performance-test-btn:active {
+        transform: translateY(0);
+    }
+    .performance-test-btn.development {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+</style>
+<button class="performance-test-btn development" onclick="runPerformanceTests()">
+    🚀 Performance Test
+</button>
 </html>

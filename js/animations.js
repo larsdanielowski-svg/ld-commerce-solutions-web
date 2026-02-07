@@ -55,13 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(contactForm);
     }
     
-    // Parallax-Effekt für Hero-Bereich
+    // Parallax-Effekt für Hero-Bereich (optimiert)
     const hero = document.querySelector('.hero');
     if (hero) {
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translate3d(0, ${rate}px, 0)`;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * -0.5;
+                    hero.style.transform = `translate3d(0, ${rate}px, 0)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
     
@@ -108,15 +115,36 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(counter);
     });
     
-    // Hover-Effekt für Buttons erweitern
+    // Hover-Effekt für Buttons erweitern (optimiert)
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(btn => {
+        // Preload transform property for better performance
+        btn.style.willChange = 'transform';
+        
+        let hoverTimeout;
         btn.addEventListener('mouseenter', (e) => {
+            clearTimeout(hoverTimeout);
             btn.style.transform = 'scale(1.05)';
+            btn.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
         });
         
         btn.addEventListener('mouseleave', (e) => {
-            btn.style.transform = 'scale(1)';
+            clearTimeout(hoverTimeout);
+            hoverTimeout = setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 10);
+        });
+        
+        // Touch support for mobile
+        btn.addEventListener('touchstart', (e) => {
+            btn.style.transform = 'scale(0.95)';
+        });
+        
+        btn.addEventListener('touchend', (e) => {
+            btn.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 150);
         });
     });
     

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI Business-Analyse | LD Commerce Solutions</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">LD <span>Commerce Solutions</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">Über uns</a></li>
+                <li><a href="ki-analyse.html" class="active">KI-Analyse</a></li>
+                <li>
+                    <button class="theme-toggle" aria-label="Dark/Light Mode umschalten" aria-live="polite">
+                        <i class="fas fa-moon"></i>
+                        <span class="theme-text">Dark</span>
+                    </button>
+                </li>
+                <li><a href="#contact" class="btn-nav">Kontakt</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section für KI-Analyse -->
+        <section class="hero ki-hero">
+            <div class="container hero-content">
+                <h1 class="animate__animated animate__fadeInDown">KI Business-Ideen-Analyse</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Lassen Sie Ihre Geschäftsidee von KI auf Umsetzbarkeit, Sinnhaftigkeit und Profit-Potenzial bewerten.</p>
+                <div class="hero-btns animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#analyse-form" class="btn btn-primary">Jetzt analysieren</a>
+                    <a href="#ergebnisse" class="btn btn-secondary">Beispiel-Ergebnisse</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyse Formular -->
+        <section id="analyse-form" class="ki-form-section">
+            <div class="container">
+                <h2 class="section-title">Ihre Business-Idee analysieren</h2>
+                <p class="section-subtitle">Beschreiben Sie Ihre Geschäftsidee und erhalten Sie eine detaillierte KI-Analyse in 3 Dimensionen</p>
+                
+                <form id="business-analyse-form" class="ki-form">
+                    <div class="form-group">
+                        <label for="idea-title">Titel der Geschäftsidee *</label>
+                        <input type="text" id="idea-title" name="idea-title" placeholder="z.B. Nachhaltiger Online-Shop für Upcycling-Produkte" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="idea-description">Ausführliche Beschreibung *</label>
+                        <textarea id="idea-description" name="idea-description" rows="6" 
+                                  placeholder="Beschreiben Sie Ihre Geschäftsidee detailliert: Zielgruppe, Produkte/Dienstleistungen, Wertversprechen, Wettbewerbsvorteile, geplante Umsetzung..." 
+                                  required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="industry">Branche</label>
+                            <select id="industry" name="industry">
+                                <option value="">Bitte auswählen</option>
+                                <option value="ecommerce">E-Commerce & Online-Handel</option>
+                                <option value="tech">Technologie & Software</option>
+                                <option value="food">Gastronomie & Food</option>
+                                <option value="services">Dienstleistungen</option>
+                                <option value="health">Gesundheit & Wellness</option>
+                                <option value="education">Bildung & EdTech</option>
+                                <option value="sustainability">Nachhaltigkeit & Green-Tech</option>
+                                <option value="other">Andere Branche</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment">Geplantes Investment (€)</label>
+                            <input type="number" id="investment" name="investment" placeholder="z.B. 50000" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="market-size">Einschätzung Marktgröße</label>
+                        <select id="market-size" name="market-size">
+                            <option value="">Bitte auswählen</option>
+                            <option value="niche">Nischenmarkt (klein)</option>
+                            <option value="regional">Regionaler Markt</option>
+                            <option value="national">Nationaler Markt</option>
+                            <option value="international">Internationaler Markt</option>
+                            <option value="global">Globaler Markt</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large" id="analyse-button">
+                            <span class="btn-text">Idee analysieren</span>
+                            <span class="loading-spinner hidden">
+                                <i class="fas fa-spinner fa-spin"></i> Analysiere...
+                            </span>
+                        </button>
+                        <button type="reset" class="btn btn-secondary">Formular leeren</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loading & Results Area -->
+        <section id="results-area" class="results-section hidden">
+            <div class="container">
+                <div class="results-header">
+                    <h2 class="section-title">Analyse-Ergebnisse</h2>
+                    <p class="section-subtitle">Ihre Geschäftsidee wurde umfassend analysiert</p>
+                </div>
+                
+                <!-- Score Cards -->
+                <div class="scores-container">
+                    <div class="score-card" id="score-feasibility">
+                        <div class="score-header">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Umsetzbarkeit</h3>
+                        </div>
+                        <div class="score-value">
+                            <span class="score-number" id="feasibility-score">0</span>
+                            <span class="score-percent">/10</span>
+                        </div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="feasibility-bar"></div>
+                        </div>
+                        <div class="score-details">
+                            <p id="feasibility-text">Wird analysiert...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="score-card" id="score-meaning">
+                        <div class="score-header">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>Sinnhaftigkeit</h3>
+                        </div>
+                        <div class="score-value">
+                            <span class="score-number" id="meaning-score">0</span>
+                            <span class="score-percent">/10</span>
+                        </div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="meaning-bar"></div>
+                        </div>
+                        <div class="score-details">
+                            <p id="meaning-text">Wird analysiert...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="score-card" id="score-profit">
+                        <div class="score-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Profit-Potenzial</h3>
+                        </div>
+                        <div class="score-value">
+                            <span class="score-number" id="profit-score">0</span>
+                            <span class="score-percent">/10</span>
+                        </div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="profit-bar"></div>
+                        </div>
+                        <div class="score-details">
+                            <p id="profit-text">Wird analysiert...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts Section -->
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Gesamtbewertung</h3>
+                        <canvas id="overall-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Details nach Dimension</h3>
+                        <canvas id="details-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Detailed Analysis -->
+                <div class="detailed-analysis">
+                    <h3>Detaillierte Analyse & Empfehlungen</h3>
+                    <div class="analysis-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="strengths">Stärken</button>
+                            <button class="tab-button" data-tab="weaknesses">Herausforderungen</button>
+                            <button class="tab-button" data-tab="recommendations">Empfehlungen</button>
+                            <button class="tab-button" data-tab="timeline">Zeitplan</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="strengths">
+                            <div class="analysis-content" id="strengths-content">
+                                <p>Wird analysiert...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="weaknesses">
+                            <div class="analysis-content" id="weaknesses-content">
+                                <p>Wird analysiert...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="recommendations">
+                            <div class="analysis-content" id="recommendations-content">
+                                <p>Wird analysiert...</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="timeline">
+                            <div class="analysis-content" id="timeline-content">
+                                <p>Wird analysiert...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="download-report">
+                        <i class="fas fa-download"></i> Bericht herunterladen (PDF)
+                    </button>
+                    <button class="btn btn-secondary" id="share-analysis">
+                        <i class="fas fa-share-alt"></i> Ergebnisse teilen
+                    </button>
+                    <button class="btn btn-outline" id="new-analysis">
+                        <i class="fas fa-redo"></i> Neue Analyse starten
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Example Results Section -->
+        <section id="ergebnisse" class="examples-section">
+            <div class="container">
+                <h2 class="section-title">Beispiel-Analysen</h2>
+                <p class="section-subtitle">So bewertet unsere KI verschiedene Geschäftsideen</p>
+                
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h3>🌱 Nachhaltiger E-Commerce Shop</h3>
+                        <div class="example-scores">
+                            <span class="score-badge green">Umsetzbarkeit: 8/10</span>
+                            <span class="score-badge blue">Sinnhaftigkeit: 9/10</span>
+                            <span class="score-badge orange">Profit: 7/10</span>
+                        </div>
+                        <p>Marktlücke für umweltbewusste Konsumenten. Gute Skalierbarkeit.</p>
+                        <button class="btn btn-small view-example">Details anzeigen</button>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h3>🤖 KI-basierte Fitness App</h3>
+                        <div class="example-scores">
+                            <span class="score-badge green">Umsetzbarkeit: 6/10</span>
+                            <span class="score-badge blue">Sinnhaftigkeit: 8/10</span>
+                            <span class="score-badge orange">Profit: 9/10</span>
+                        </div>
+                        <p>Hohe initiale Entwicklungskosten, aber starkes Wachstumspotenzial.</p>
+                        <button class="btn btn-small view-example">Details anzeigen</button>
+                    </div>
+                    
+                    <div class="example-card">
+                        <h3>🏪 Lokaler Food-Delivery Service</h3>
+                        <div class="example-scores">
+                            <span class="score-badge green">Umsetzbarkeit: 9/10</span>
+                            <span class="score-badge blue">Sinnhaftigkeit: 7/10</span>
+                            <span class="score-badge orange">Profit: 6/10</span>
+                        </div>
+                        <p>Geringe Einstiegshürden, aber starker Wettbewerb und Margendruck.</p>
+                        <button class="btn btn-small view-example">Details anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="ki-info-section">
+            <div class="container">
+                <h2 class="section-title">Wie funktioniert die KI-Analyse?</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI-Technologie</h3>
+                        <p>Unsere Analyse nutzt fortschrittliche KI-Modelle (OpenAI/DeepSeek), die auf tausenden erfolgreichen Business-Cases trainiert wurden.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>3-Dimensionen Analyse</h3>
+                        <p>Jede Idee wird in drei Kernbereichen bewertet: Technische Umsetzbarkeit, gesellschaftliche Sinnhaftigkeit und wirtschaftliche Rentabilität.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Marktdaten Integration</h3>
+                        <p>Die Analyse berücksichtigt aktuelle Markttrends, Wettbewerbsanalysen und branchenspezifische Erfolgsfaktoren.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LD Commerce Solutions</h3>
+                    <p>Moderne Handelslösungen für den digitalen Erfolg Ihres Unternehmens.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Kontakt</h3>
+                    <p>info@ld-commerce.com<br>+49 (0) 123 456 789<br>Berlin, Deutschland</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Rechtliches</h3>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LD Commerce Solutions. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="js/ki-analyse.js"></script>
+</body>
+</html>
